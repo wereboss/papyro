@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Papyro - Kids Worksheet Generator</title>
+  <!-- Google Fonts: Outfit for UI, Comic Neue for educational print text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/static/css/app.css">
+  <link rel="stylesheet" href="/static/css/worksheet.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Navigation Bar -->
+    <header class="app-header">
+      <div class="logo">
+        <span class="logo-icon">✏️</span>
+        <span class="logo-text">Papyro</span>
+      </div>
+      <div class="header-actions">
+        <button id="btn-show-bookmarks" class="btn btn-secondary">
+          <span class="icon">🔖</span> Saved Worksheets
+        </button>
+        <button id="btn-toggle-theme" class="btn-theme-toggle" aria-label="Toggle Theme">
+          <span class="icon-sun">☀️</span>
+          <span class="icon-moon">🌙</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="app-workspace">
+      <!-- Left Sidebar: Configuration Panel -->
+      <aside class="sidebar">
+        <div class="sidebar-section">
+          <h2>Subject & Template</h2>
+          <div class="form-group">
+            <label for="select-subject">Subject</label>
+            <select id="select-subject" class="form-select">
+              <option value="math">Math</option>
+              <option value="logic">Logic & Puzzles</option>
+              <option value="language">Language</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Template</label>
+            <div id="template-list-container" class="template-selector-list">
+              <!-- Templates will be rendered here dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <h2>Worksheet Options</h2>
+          <div id="dynamic-options-container">
+            <!-- Custom options will be loaded here depending on chosen template -->
+            <p class="placeholder-text">Select a template to configure options.</p>
+          </div>
+        </div>
+
+        <!-- Sidebar Actions -->
+        <div class="sidebar-actions">
+          <button id="btn-generate" class="btn btn-primary btn-block">
+            <span class="icon">🎲</span> Generate Worksheet
+          </button>
+          <div class="btn-grid">
+            <button id="btn-save" class="btn btn-secondary">
+              <span class="icon">💾</span> Save/Bookmark
+            </button>
+            <button id="btn-print" class="btn btn-secondary">
+              <span class="icon">🖨️</span> Print / PDF
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Right Viewport: Live Preview Canvas -->
+      <section class="viewport">
+        <!-- Canvas Utility Controls -->
+        <div class="viewport-controls">
+          <div class="control-group">
+            <span class="label">Preview Scale:</span>
+            <select id="select-scale" class="form-select select-sm">
+              <option value="auto">Auto-Fit</option>
+              <option value="1.0">A4 (100%)</option>
+              <option value="0.7">A5 (70%)</option>
+              <option value="0.5">A6 (50%)</option>
+              <option value="0.35">A7 (35%)</option>
+            </select>
+          </div>
+          <div class="control-separator"></div>
+          <div class="control-group">
+            <label class="switch-container">
+              <input type="checkbox" id="chk-interactive">
+              <span class="switch-slider"></span>
+              <span class="switch-label">Play Interactive Mode</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Scrollable Worksheet Frame -->
+        <div class="worksheet-scroll-frame">
+          <div id="worksheet-viewport" class="worksheet-viewport-container">
+            <!-- The actual paper layout container -->
+            <div id="worksheet-paper" class="worksheet-paper" data-orientation="portrait">
+              <div id="worksheet-content" class="worksheet-content-wrapper">
+                <!-- Template HTML content injected here -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Score Bar (hidden by default) -->
+        <div id="score-bar" class="score-bar hidden">
+          <span id="score-text">Completed!</span>
+          <button id="btn-check-answers" class="btn btn-success">Check Answers</button>
+          <button id="btn-reset-interactive" class="btn btn-secondary">Reset</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Slide-out Saved Worksheets Drawer -->
+    <div id="bookmarks-drawer" class="drawer">
+      <div class="drawer-overlay" id="drawer-overlay"></div>
+      <div class="drawer-content">
+        <div class="drawer-header">
+          <h3>Saved Worksheets</h3>
+          <button id="btn-close-drawer" class="drawer-close-btn">&times;</button>
+        </div>
+        <div class="drawer-body">
+          <div id="bookmarks-list" class="bookmarks-grid">
+            <!-- Saved worksheets will be injected here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Save Dialog Modal -->
+    <div id="save-modal" class="modal">
+      <div class="modal-content">
+        <h3>Save Worksheet Bookmark</h3>
+        <p>Save this worksheet's layout and values to print or play again later.</p>
+        <div class="form-group">
+          <label for="input-save-title">Worksheet Title</label>
+          <input type="text" id="input-save-title" class="form-input" placeholder="e.g., Easy Addition Grid">
+        </div>
+        <div class="modal-actions">
+          <button id="btn-save-confirm" class="btn btn-primary">Confirm Save</button>
+          <button id="btn-save-cancel" class="btn btn-secondary">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPA Scripts -->
+  <script type="module" src="/static/js/app.js"></script>
+</body>
+</html>

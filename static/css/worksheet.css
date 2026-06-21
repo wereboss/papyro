@@ -1,0 +1,585 @@
+/* Papyro Worksheet Paper & Print Styling - Comic Neue Font */
+
+/* Viewport containment */
+.worksheet-viewport-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+
+/* physical A4 boundaries */
+.worksheet-paper {
+  background-color: var(--color-sheet-bg);
+  color: var(--color-sheet-text);
+  box-shadow: 0 8px 24px var(--bg-paper-shadow);
+  border: 1px solid var(--color-sheet-border);
+  box-sizing: border-box;
+  padding: 18mm 15mm;
+  font-family: 'Comic Neue', cursive;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.15s ease-out;
+}
+
+/* Portrait vs Landscape settings */
+.worksheet-paper[data-orientation="portrait"] {
+  width: 210mm;
+  height: 297mm;
+}
+.worksheet-paper[data-orientation="landscape"] {
+  width: 297mm;
+  height: 210mm;
+}
+
+/* Worksheet Inner Content wrapper */
+.worksheet-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+/* Worksheet Header elements */
+.sheet-header {
+  border-bottom: 2px dashed #000;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sheet-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.sheet-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #111;
+  text-transform: capitalize;
+}
+
+.sheet-subtitle {
+  font-size: 13px;
+  color: #555;
+  margin-top: 4px;
+}
+
+.sheet-student-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.sheet-student-info span {
+  border-bottom: 1.5px solid #000;
+  padding-bottom: 2px;
+}
+.sheet-student-info .info-name {
+  width: 55%;
+}
+.sheet-student-info .info-date {
+  width: 30%;
+}
+
+/* Dynamic content area */
+.sheet-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 20px;
+  overflow: hidden;
+}
+
+/* --- 1. Math Grid Styling --- */
+.math-grid {
+  display: grid;
+  gap: 30px 20px;
+  justify-content: space-between;
+  align-content: start;
+  margin-top: 15px;
+}
+
+.math-problem {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 24px;
+  font-weight: 700;
+  width: 80px;
+  position: relative;
+  padding-right: 5px;
+  user-select: none;
+}
+
+.math-problem .op-symbol {
+  position: absolute;
+  left: 5px;
+  bottom: 35px;
+}
+
+.math-problem .num {
+  letter-spacing: 2px;
+  line-height: 1.2;
+}
+
+.math-problem .line {
+  width: 100%;
+  height: 2px;
+  background-color: #000;
+  margin: 4px 0;
+}
+
+/* Input Fields inside Worksheet */
+.math-problem input.ans-input {
+  width: 100%;
+  text-align: right;
+  font-size: 22px;
+  font-family: inherit;
+  font-weight: 700;
+  border: 1px dashed #777;
+  border-radius: 4px;
+  padding: 2px 4px;
+  background-color: #fcfcfc;
+  outline: none;
+}
+/* Print mode input override (standard print shows clean line/box) */
+.math-problem .ans-placeholder {
+  width: 100%;
+  height: 30px;
+  border-bottom: 1.5px dotted #555;
+}
+
+/* Interactive feedback highlights */
+.worksheet-paper.checked .ans-input.correct {
+  background-color: var(--success-light) !important;
+  border-color: var(--success) !important;
+  color: var(--success) !important;
+}
+.worksheet-paper.checked .ans-input.incorrect {
+  background-color: var(--error-light) !important;
+  border-color: var(--error) !important;
+  color: var(--error) !important;
+}
+.worksheet-paper.checked .ans-input.incorrect + .correct-hint {
+  display: block;
+}
+.correct-hint {
+  display: none;
+  font-size: 11px;
+  color: var(--success);
+  margin-top: 2px;
+  font-weight: bold;
+}
+
+/* --- 2. Word Search Grid Styling --- */
+.word-search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.word-search-grid {
+  display: grid;
+  border: 2px solid #000;
+  background-color: #fff;
+  user-select: none;
+}
+
+.word-search-cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+/* Word Search interactive styling */
+.word-search-cell.selected {
+  background-color: var(--accent-light);
+}
+.word-search-cell.found {
+  background-color: var(--success-light);
+  color: var(--success);
+  font-weight: bold;
+}
+
+/* List of words to find */
+.word-search-list-box {
+  width: 100%;
+  border: 1.5px solid #000;
+  border-radius: 8px;
+  padding: 12px;
+}
+.word-search-list-box h5 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  border-bottom: 1px dashed #000;
+  padding-bottom: 4px;
+}
+.word-search-words {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  font-size: 14px;
+}
+.ws-word-item {
+  font-weight: 700;
+  color: #333;
+}
+.ws-word-item.found {
+  text-decoration: line-through;
+  color: var(--success);
+  opacity: 0.7;
+}
+
+/* --- 3. Connect the Dots / Maze Styling --- */
+.maze-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 15px;
+  position: relative;
+}
+
+.maze-svg-canvas {
+  border: 1.5px dashed #aaa;
+  background-color: #fff;
+  border-radius: 8px;
+  cursor: crosshair;
+}
+
+.maze-dot {
+  cursor: pointer;
+  transition: r 0.2s, fill 0.2s;
+}
+.maze-dot:hover {
+  r: 8px;
+}
+.maze-dot.active-target {
+  fill: var(--accent);
+  r: 7px;
+  animation: pulse 1s infinite alternate;
+}
+.maze-dot.connected {
+  fill: var(--success);
+}
+.maze-dot-text {
+  font-size: 11px;
+  font-weight: 700;
+  fill: #000;
+  user-select: none;
+  pointer-events: none;
+}
+.maze-line {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+.maze-line.guide {
+  stroke: #eee;
+  stroke-dasharray: 4;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.2); }
+}
+
+/* --- 4. Fill in the Blanks Grid Styling --- */
+.blanks-grid {
+  display: grid;
+  gap: 30px 20px;
+  justify-content: space-between;
+  align-content: start;
+  margin-top: 15px;
+}
+
+.blank-item-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 16px;
+  user-select: none;
+}
+
+.blank-item-emoji {
+  font-size: 54px;
+  line-height: 1;
+}
+
+.blank-item-word {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.revealed-letter {
+  font-size: 26px;
+  font-weight: 700;
+  color: #111;
+  text-transform: uppercase;
+}
+
+.print-blank-letter {
+  font-size: 26px;
+  font-weight: 700;
+  color: #111;
+  border-bottom: 2px solid #000;
+  width: 20px;
+  text-align: center;
+  display: inline-block;
+  margin-left: 2px;
+}
+
+.blank-letter-container {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.blank-input-letter {
+  width: 26px;
+  height: 32px;
+  text-align: center;
+  font-size: 22px;
+  font-family: inherit;
+  font-weight: 700;
+  border: 1px dashed #777;
+  border-radius: 4px;
+  background-color: #fcfcfc;
+  outline: none;
+  text-transform: uppercase;
+}
+
+/* Correct/Incorrect checks */
+.worksheet-paper.checked .blank-input-letter.correct {
+  background-color: var(--success-light) !important;
+  border-color: var(--success) !important;
+  color: var(--success) !important;
+}
+.worksheet-paper.checked .blank-input-letter.incorrect {
+  background-color: var(--error-light) !important;
+  border-color: var(--error) !important;
+  color: var(--error) !important;
+}
+.worksheet-paper.checked .blank-input-letter.incorrect + .correct-blank-hint {
+  display: block;
+}
+
+.correct-blank-hint {
+  display: none;
+  font-size: 11px;
+  color: var(--success);
+  font-weight: bold;
+  position: absolute;
+  top: -16px;
+}
+
+/* --- 5. Count the Objects Grid Styling --- */
+.count-grid {
+  display: grid;
+  gap: 30px 20px;
+  justify-content: space-between;
+  align-content: start;
+  margin-top: 15px;
+}
+
+.count-item-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 16px;
+  min-height: 180px;
+  user-select: none;
+}
+
+.count-emojis-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  gap: 8px 12px;
+  width: 100%;
+  margin-bottom: auto;
+}
+
+.count-single-emoji {
+  font-size: 34px;
+  line-height: 1.2;
+}
+
+.count-answer-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  position: relative;
+}
+
+.count-input-box {
+  width: 60px;
+  height: 30px;
+  text-align: center;
+  font-size: 18px;
+  font-family: inherit;
+  font-weight: 700;
+  border: 1px dashed #777;
+  border-radius: 4px;
+  background-color: #fcfcfc;
+  outline: none;
+}
+
+.count-print-placeholder {
+  display: inline-block;
+  width: 50px;
+  border-bottom: 1.5px dotted #000;
+  text-align: center;
+}
+
+/* Correct/Incorrect checks */
+.worksheet-paper.checked .count-input-box.correct {
+  background-color: var(--success-light) !important;
+  border-color: var(--success) !important;
+  color: var(--success) !important;
+}
+.worksheet-paper.checked .count-input-box.incorrect {
+  background-color: var(--error-light) !important;
+  border-color: var(--error) !important;
+  color: var(--error) !important;
+}
+.worksheet-paper.checked .count-input-box.incorrect + .correct-count-hint {
+  display: block;
+}
+
+.correct-count-hint {
+  display: none;
+  font-size: 11px;
+  color: var(--success);
+  font-weight: bold;
+  position: absolute;
+  right: -55px;
+}
+
+/* --- Print Stylesheet Override --- */
+@media print {
+  /* Remove app interface components entirely */
+  header.app-header,
+  aside.sidebar,
+  .viewport-controls,
+  .score-bar,
+  .drawer,
+  .modal {
+    display: none !important;
+  }
+
+  body {
+    background-color: transparent !important;
+    background: transparent !important;
+    overflow: visible !important;
+    height: auto !important;
+  }
+
+  .app-container {
+    height: auto !important;
+    display: block !important;
+  }
+
+  .app-workspace {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .worksheet-scroll-frame {
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+  }
+
+  .worksheet-viewport-container {
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+  }
+
+  /* Force physical A4 page layout without shadows */
+  .worksheet-paper {
+    transform: none !important; /* Never scale during prints */
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    page-break-inside: avoid;
+    page-break-after: always;
+    overflow: visible !important;
+  }
+
+  .worksheet-paper[data-orientation="portrait"] {
+    width: 210mm !important;
+    height: 297mm !important;
+  }
+  .worksheet-paper[data-orientation="landscape"] {
+    width: 297mm !important;
+    height: 210mm !important;
+  }
+
+  /* Force print inputs to appear as clean lines (hiding border outline) */
+  .math-problem input.ans-input {
+    border: none !important;
+    border-bottom: 1.5px dotted #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-align: center !important;
+  }
+
+  .correct-hint,
+  .correct-blank-hint {
+    display: none !important; /* Hide grading markers on prints */
+  }
+
+  .blank-item-card,
+  .count-item-card {
+    border: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .correct-count-hint {
+    display: none !important;
+  }
+
+  /* Set page orientation properties dynamically */
+  @page {
+    margin: 0;
+  }
+}

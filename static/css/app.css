@@ -1,0 +1,671 @@
+/* Papyro Core App Styling - Outfit Font UI */
+
+:root {
+  /* HSL Color System - Light Mode default */
+  --bg-main: hsl(210, 20%, 97%);
+  --bg-panel: hsl(0, 0%, 100%);
+  --bg-paper-shadow: hsla(220, 20%, 10%, 0.08);
+  --text-main: hsl(220, 20%, 15%);
+  --text-muted: hsl(220, 10%, 45%);
+  --border-color: hsl(220, 15%, 90%);
+  
+  --accent: hsl(260, 85%, 60%);
+  --accent-hover: hsl(260, 85%, 55%);
+  --accent-light: hsla(260, 85%, 60%, 0.08);
+  
+  --success: hsl(142, 70%, 45%);
+  --success-light: hsla(142, 70%, 45%, 0.1);
+  --error: hsl(0, 75%, 55%);
+  --error-light: hsla(0, 75%, 55%, 0.1);
+  
+  --sidebar-width: 320px;
+  --header-height: 64px;
+  --transition-speed: 0.25s;
+  
+  /* Always constant for printed sheet paper background */
+  --color-sheet-bg: hsl(0, 0%, 100%);
+  --color-sheet-text: hsl(220, 20%, 15%);
+  --color-sheet-border: hsl(220, 15%, 85%);
+}
+
+/* Dark Mode Variables */
+[data-theme="dark"] {
+  --bg-main: hsl(220, 20%, 10%);
+  --bg-panel: hsl(220, 20%, 15%);
+  --bg-paper-shadow: hsla(0, 0%, 0%, 0.35);
+  --text-main: hsl(210, 20%, 95%);
+  --text-muted: hsl(220, 10%, 70%);
+  --border-color: hsl(220, 15%, 23%);
+  
+  --accent: hsl(260, 85%, 68%);
+  --accent-hover: hsl(260, 85%, 75%);
+  --accent-light: hsla(260, 85%, 68%, 0.15);
+}
+
+/* Global resets and layouts */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Header bar */
+.app-header {
+  height: var(--header-height);
+  background-color: var(--bg-panel);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  transition: background-color var(--transition-speed), border-color var(--transition-speed);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo-icon {
+  font-size: 24px;
+}
+.logo-text {
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, var(--accent), hsl(280, 80%, 60%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  transition: all var(--transition-speed) ease;
+}
+.btn-block {
+  display: flex;
+  width: 100%;
+}
+.btn-primary {
+  background-color: var(--accent);
+  color: #fff;
+}
+.btn-primary:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-1px);
+}
+.btn-secondary {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+}
+.btn-secondary:hover {
+  background-color: var(--border-color);
+}
+.btn-success {
+  background-color: var(--success);
+  color: #fff;
+}
+.btn-success:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+.btn-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+}
+
+/* Theme Toggle Button */
+.btn-theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--text-muted);
+  transition: background-color var(--transition-speed);
+}
+.btn-theme-toggle:hover {
+  background-color: var(--border-color);
+}
+[data-theme="dark"] .icon-sun { display: block; }
+[data-theme="dark"] .icon-moon { display: none; }
+body:not([data-theme="dark"]) .icon-sun { display: none; }
+body:not([data-theme="dark"]) .icon-moon { display: block; }
+
+/* Workspace layout */
+.app-workspace {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  height: calc(100vh - var(--header-height));
+}
+
+/* Sidebar panel */
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--bg-panel);
+  border-right: 1px solid var(--border-color);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow-y: auto;
+  flex-shrink: 0;
+  transition: background-color var(--transition-speed), border-color var(--transition-speed);
+}
+
+.sidebar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.sidebar-section h2 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  font-weight: 700;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 6px;
+}
+
+/* Inputs & Form Controls */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+.form-select, .form-input, .form-textarea {
+  font-family: inherit;
+  font-size: 14px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  outline: none;
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+.form-select:focus, .form-input:focus, .form-textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+.form-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Template selection list */
+.template-selector-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.template-card {
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: var(--bg-main);
+  transition: all var(--transition-speed) ease;
+}
+.template-card.active {
+  border-color: var(--accent);
+  background-color: var(--accent-light);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+.template-card h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+.template-card p {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  line-height: 1.3;
+}
+
+.placeholder-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+  padding: 16px 0;
+}
+
+.sidebar-actions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 16px;
+}
+
+/* Viewport Preview Area */
+.viewport {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-main);
+  overflow: hidden;
+  position: relative;
+  transition: background-color var(--transition-speed);
+}
+
+.viewport-controls {
+  height: 50px;
+  background-color: var(--bg-panel);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 16px;
+  flex-shrink: 0;
+  transition: background-color var(--transition-speed), border-color var(--transition-speed);
+}
+.viewport-controls .control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.viewport-controls .label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.select-sm {
+  padding: 4px 8px;
+  font-size: 13px;
+}
+.control-separator {
+  width: 1px;
+  height: 20px;
+  background-color: var(--border-color);
+}
+
+/* Switch Slider */
+.switch-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+.switch-container input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.switch-slider {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  background-color: var(--border-color);
+  border-radius: 20px;
+  transition: background-color var(--transition-speed);
+}
+.switch-slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform var(--transition-speed);
+}
+.switch-container input:checked + .switch-slider {
+  background-color: var(--success);
+}
+.switch-container input:checked + .switch-slider:before {
+  transform: translateX(16px);
+}
+.switch-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+/* Worksheet Scroll frame */
+.worksheet-scroll-frame {
+  flex: 1;
+  overflow: auto;
+  padding: 30px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Floating interactive score bar */
+.score-bar {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  padding: 12px 24px;
+  border-radius: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 100;
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all var(--transition-speed);
+}
+.score-bar.hidden {
+  display: none !important;
+}
+#score-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+@keyframes slideUp {
+  from { transform: translate(-50%, 50px); opacity: 0; }
+  to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+/* Slidable drawer for bookmarks */
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 200;
+  visibility: hidden;
+  pointer-events: none;
+  transition: visibility var(--transition-speed);
+}
+.drawer.open {
+  visibility: visible;
+  pointer-events: auto;
+}
+.drawer-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  opacity: 0;
+  transition: opacity var(--transition-speed);
+}
+.drawer.open .drawer-overlay {
+  opacity: 1;
+}
+.drawer-content {
+  position: absolute;
+  top: 0;
+  right: -420px;
+  width: 420px;
+  max-width: 100%;
+  height: 100%;
+  background-color: var(--bg-panel);
+  box-shadow: -5px 0 30px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  transition: right var(--transition-speed) cubic-bezier(0.16, 1, 0.3, 1);
+}
+.drawer.open .drawer-content {
+  right: 0;
+}
+.drawer-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.drawer-header h3 {
+  font-size: 18px;
+  font-weight: 700;
+}
+.drawer-close-btn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+.drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+.bookmarks-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.bookmark-card {
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 16px;
+  background-color: var(--bg-main);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform var(--transition-speed);
+}
+.bookmark-card:hover {
+  transform: translateY(-2px);
+}
+.bookmark-info h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+.bookmark-info p {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.bookmark-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.bookmark-tag {
+  background-color: var(--accent-light);
+  color: var(--accent);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.bookmark-date {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.bookmark-actions {
+  display: flex;
+  gap: 8px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 10px;
+}
+
+/* Modals */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 300;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.modal.open {
+  display: flex;
+}
+.modal:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+.modal-content {
+  position: relative;
+  background-color: var(--bg-panel);
+  border-radius: 12px;
+  padding: 24px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: modalScale 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes modalScale {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.modal-content h3 {
+  font-size: 18px;
+  font-weight: 700;
+}
+.modal-content p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+/* Option controls grid */
+.options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.option-slider-val {
+  float: right;
+  font-weight: 700;
+  color: var(--accent);
+}
+.option-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.option-checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.option-checkbox-label input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+}
+
+/* Mobile responsive collapsing */
+@media (max-width: 900px) {
+  body {
+    overflow: auto;
+  }
+  .app-workspace {
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+  }
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    overflow-y: visible;
+    height: auto;
+  }
+  .viewport {
+    height: auto;
+    overflow: visible;
+    padding-bottom: 60px;
+  }
+  .viewport-controls {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+  .worksheet-scroll-frame {
+    overflow: visible;
+  }
+}
