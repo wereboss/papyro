@@ -28,10 +28,8 @@ if [ -n "$FISH_VERSION" ]; then
 fi
 source venv/bin/activate
 
-# 3. Check and install dependencies
-echo "📥 Verifying dependencies..."
-pip install --upgrade pip
-pip install -r requirements.txt
+# 3. Verify dependencies (run manually if packages change)
+# pip install -r requirements.txt
 
 # 4. Start Production Server
 PORT=9028
