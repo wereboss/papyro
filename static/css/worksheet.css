@@ -20,18 +20,20 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;
   transition: transform 0.15s ease-out;
 }
 
 /* Portrait vs Landscape settings */
 .worksheet-paper[data-orientation="portrait"] {
   width: 210mm;
-  height: 297mm;
+  min-height: 297mm;
+  height: auto;
 }
 .worksheet-paper[data-orientation="landscape"] {
   width: 297mm;
-  height: 210mm;
+  min-height: 210mm;
+  height: auto;
 }
 
 /* Worksheet Inner Content wrapper */
@@ -665,11 +667,21 @@
 
   .worksheet-paper[data-orientation="portrait"] {
     width: 210mm !important;
-    height: 297mm !important;
+    min-height: 297mm !important;
+    height: auto !important;
   }
   .worksheet-paper[data-orientation="landscape"] {
     width: 297mm !important;
-    height: 210mm !important;
+    min-height: 210mm !important;
+    height: auto !important;
+  }
+
+  .pattern-challenge-card,
+  .blank-item-card,
+  .count-item-card,
+  .math-problem {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
   }
 
   /* Force print inputs to appear as clean lines (hiding border outline) */

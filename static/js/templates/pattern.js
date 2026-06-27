@@ -18,6 +18,56 @@ export class EmojiPatternTemplate extends BaseTemplate {
     });
   }
 
+  placeSequenceAdjacently(sequence, rows, cols) {
+    for (let attempt = 0; attempt < 500; attempt++) {
+      const gridMatrix = Array(rows).fill(null).map(() => Array(cols).fill(null));
+      const visited = Array(rows).fill(null).map(() => Array(cols).fill(false));
+      
+      let r = Math.floor(Math.random() * rows);
+      let c = Math.floor(Math.random() * cols);
+      
+      gridMatrix[r][c] = sequence[0];
+      visited[r][c] = true;
+      let success = true;
+
+      for (let step = 1; step < sequence.length; step++) {
+        const neighbors = [];
+        for (let dr = -1; dr <= 1; dr++) {
+          for (let dc = -1; dc <= 1; dc++) {
+            if (dr === 0 && dc === 0) continue;
+            const nr = r + dr;
+            const nc = c + dc;
+            if (nr >= 0 && nr < rows && nc >= 0 && nc < cols && !visited[nr][nc]) {
+              neighbors.push({ r: nr, c: nc });
+            }
+          }
+        }
+
+        if (neighbors.length === 0) {
+          success = false;
+          break;
+        }
+
+        const nextCell = neighbors[Math.floor(Math.random() * neighbors.length)];
+        r = nextCell.r;
+        c = nextCell.c;
+        gridMatrix[r][c] = sequence[step];
+        visited[r][c] = true;
+      }
+
+      if (success) {
+        const flatGrid = [];
+        for (let i = 0; i < rows; i++) {
+          for (let j = 0; j < cols; j++) {
+            flatGrid.push(gridMatrix[i][j]);
+          }
+        }
+        return flatGrid;
+      }
+    }
+    return [...sequence].sort(() => Math.random() - 0.5);
+  }
+
   generateState(resolvedConfig) {
     const count = resolvedConfig.challenges_count;
     const cols = resolvedConfig.grid_columns;
@@ -31,8 +81,8 @@ export class EmojiPatternTemplate extends BaseTemplate {
       const poolShuffled = [...EMOJI_POOL].sort(() => Math.random() - 0.5);
       const sequence = poolShuffled.slice(0, seqLen);
 
-      // Create exact match grid by shuffling sequence
-      const grid = [...sequence].sort(() => Math.random() - 0.5);
+      // Place emojis in grid such that each consecutive emoji is 1 space away (adjacent)
+      const grid = this.placeSequenceAdjacently(sequence, rows, cols);
 
       challenges.push({
         id: c,
@@ -70,7 +120,7 @@ export class EmojiPatternTemplate extends BaseTemplate {
             <option value="2x2" ${config.grid_columns === 2 && config.grid_rows === 2 ? "selected" : ""}>2x2 Grid (4 Emojis)</option>
             <option value="3x2" ${config.grid_columns === 3 && config.grid_rows === 2 ? "selected" : ""}>3x2 Grid (6 Emojis)</option>
             <option value="3x3" ${config.grid_columns === 3 && config.grid_rows === 3 ? "selected" : ""}>3x3 Grid (9 Emojis)</option>
-            <option value="3x4" ${config.grid_columns === 3 && config.grid_rows === 4 ? "selected" : ""}>3x4 Grid (12 Emojis)</option>
+            <option value="4x3" ${config.grid_columns === 4 && config.grid_rows === 3 ? "selected" : ""}>4x3 Grid (12 Emojis)</option>
           </select>
         </div>
       </div>
