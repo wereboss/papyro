@@ -11,7 +11,7 @@ const EMOJI_POOL = [
 export class EmojiPatternTemplate extends BaseTemplate {
   constructor() {
     super("emoji_pattern", "Emoji Pattern Path", {
-      challenges_count: 3,
+      challenges_count: 4,
       grid_columns: 2,
       grid_rows: 2,
       orientation: "portrait"

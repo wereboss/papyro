@@ -70,7 +70,7 @@ DEFAULT_TEMPLATES = [
         "name": "Emoji Pattern Path",
         "description": "Trace and connect scattered grid emojis to match the target pattern sequence shown above.",
         "base_config": {
-            "challenges_count": 3,
+            "challenges_count": 4,
             "grid_columns": 2,
             "grid_rows": 2,
             "orientation": "portrait"
