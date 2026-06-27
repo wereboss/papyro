@@ -81,7 +81,8 @@ DEFAULT_TEMPLATES = [
         "name": "Number Practice (1-10)",
         "description": "Comprehensive single-page numeral activity sheet covering tracing, word recognition, counting, and matching.",
         "base_config": {
-            "target_number": 5,
+            "target_number_1": 5,
+            "target_number_2": 8,
             "orientation": "portrait"
         }
     }
