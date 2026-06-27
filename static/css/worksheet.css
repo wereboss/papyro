@@ -1032,6 +1032,72 @@
   background-color: var(--error-light) !important;
 }
 
+/* --- 9. Letter Practice (A-Z) Grid Styling --- */
+.sec-5-fontvar {
+  grid-column: 2 / 4;
+  grid-row: 4 / 5;
+}
+.font-var-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+  flex: 1;
+}
+.font-var-box {
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.font-var-box.selected {
+  border-color: var(--accent);
+  background-color: var(--accent-light);
+}
+
+.font-style-serif { font-family: 'Times New Roman', Times, serif; font-style: italic; }
+.font-style-cursive { font-family: 'Comic Neue', 'Brush Script MT', cursive; font-weight: 700; }
+.font-style-mono { font-family: 'Courier New', Courier, monospace; letter-spacing: 2px; }
+.font-style-fantasy { font-family: Impact, Papyrus, fantasy; text-transform: lowercase; }
+.font-style-italic { font-style: italic; font-weight: bold; }
+.font-style-bold { font-weight: 900; text-transform: lowercase; }
+
+.sec-6-emojimatch {
+  grid-column: 2 / 3;
+  grid-row: 5 / 6;
+}
+.emoji-2x2-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 3px;
+  flex: 1;
+}
+.emoji-match-box {
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.emoji-match-box.selected {
+  border-color: var(--accent);
+  background-color: var(--accent-light);
+}
+
+.worksheet-paper.checked .font-var-box.correct-pick,
+.worksheet-paper.checked .emoji-match-box.correct-pick {
+  background-color: var(--success-light) !important;
+  border-color: var(--success) !important;
+  color: var(--success) !important;
+}
+
 /* --- Print Stylesheet Override --- */
 @media print {
   /* Remove app interface components entirely */

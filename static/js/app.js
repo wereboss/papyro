@@ -9,6 +9,7 @@ import { CountObjectsTemplate } from "./templates/count.js";
 import { EmojiPatternTemplate } from "./templates/pattern.js";
 import { NumberLearningTemplate } from "./templates/number.js";
 import { AddObjectsTemplate } from "./templates/add_objects.js";
+import { LetterPracticeTemplate } from "./templates/letter.js";
 
 // Initialize Template Registry
 const TEMPLATE_REGISTRY = {
@@ -19,7 +20,8 @@ const TEMPLATE_REGISTRY = {
   count_objects: new CountObjectsTemplate(),
   emoji_pattern: new EmojiPatternTemplate(),
   number_learning: new NumberLearningTemplate(),
-  add_objects: new AddObjectsTemplate()
+  add_objects: new AddObjectsTemplate(),
+  letter_practice: new LetterPracticeTemplate()
 };
 
 // Global App State
@@ -97,7 +99,7 @@ function filterTemplatesBySubject(subject) {
     // Basic categorization mappings
     const isMath = subject === "math" && (t.id === "math_grid" || t.id === "count_objects" || t.id === "number_learning" || t.id === "add_objects");
     const isLogic = subject === "logic" && (t.id === "word_search" || t.id === "connect_dots");
-    const isLanguage = subject === "language" && t.id === "fill_blanks";
+    const isLanguage = subject === "language" && (t.id === "fill_blanks" || t.id === "letter_practice");
     const isPatterns = subject === "patterns" && t.id === "emoji_pattern";
     
     if (isMath || isLogic || isLanguage || isPatterns) {
@@ -362,7 +364,7 @@ function loadSavedWorksheetInstance(ws) {
   // Set subject filter in select dropdown
   let subject = "logic";
   if (ws.template_id === "math_grid" || ws.template_id === "count_objects" || ws.template_id === "number_learning" || ws.template_id === "add_objects") subject = "math";
-  else if (ws.template_id === "fill_blanks") subject = "language";
+  else if (ws.template_id === "fill_blanks" || ws.template_id === "letter_practice") subject = "language";
   else if (ws.template_id === "emoji_pattern") subject = "patterns";
   
   selectSubject.value = subject;

@@ -95,6 +95,16 @@ DEFAULT_TEMPLATES = [
             "max_count": 10,
             "orientation": "portrait"
         }
+    },
+    {
+        "id": "letter_practice",
+        "name": "Letter Practice (A-Z)",
+        "description": "Comprehensive dual-puzzle alphabet activity sheet covering letter tracing, font variations, phonics matching, and word recognition.",
+        "base_config": {
+            "target_letter_1": "A",
+            "target_letter_2": "B",
+            "orientation": "portrait"
+        }
     }
 ]
 

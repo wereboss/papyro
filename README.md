@@ -105,5 +105,9 @@ Comprehensive single-page educational sheet for numbers 1 to 10 mapped into a 3x
 ### 8. Add the Objects (Math)
 Generates 2-column grids of addition equation puzzle cards. Each card displays two groups of randomized emojis separated by a plus sign (`+`) and equals sign (`=`), expecting children to add the groups and write the numeric answer.
 
+### 9. Letter Practice (A-Z) (Language)
+Comprehensive alphabet activity sheet for letters A to Z mapped into a 3x6 grid. Features giant letter tracing, 6x2 letter tracing grids, vocabulary word tracing, letter bubble hunting, weird font variation identification, emoji phonics matching, word recognition, and bottom-line letter matching.
+
+
 
 
