@@ -627,6 +627,256 @@
   75% { transform: translateX(5px); }
 }
 
+/* --- 7. Number Practice (1-10) Grid Styling --- */
+.number-learning-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(6, minmax(60px, auto));
+  gap: 10px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.num-sec {
+  background-color: #fff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  user-select: none;
+}
+
+.num-sec .sec-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+/* Section 1: Giant (1x3 box, col 1, rows 1..3) */
+.sec-1-giant {
+  grid-column: 1 / 2;
+  grid-row: 1 / 4;
+  align-items: center;
+  justify-content: center;
+}
+.giant-numeral {
+  font-size: 130px;
+  font-weight: 700;
+  color: transparent;
+  -webkit-text-stroke: 2px #94a3b8;
+  line-height: 1;
+}
+
+/* Section 2: 6x2 Tracing (2x2 box, cols 2..3, rows 1..2) */
+.sec-2-tracegrid {
+  grid-column: 2 / 4;
+  grid-row: 1 / 3;
+}
+.trace-6x2-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 4px;
+  flex: 1;
+}
+.trace-num-box {
+  border: 1px dashed #cbd5e1;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  color: #cbd5e1;
+}
+
+/* Section 3: Word Tracing (2x1 box, cols 2..3, row 3) */
+.sec-3-wordtrace {
+  grid-column: 2 / 4;
+  grid-row: 3 / 4;
+}
+.word-trace-boxes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  flex: 1;
+}
+.word-trace-boxes .word-box {
+  background-color: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 1px;
+}
+
+/* Section 4: Bubbles (1x2 box, col 1, rows 4..5) */
+.sec-4-bubbles {
+  grid-column: 1 / 2;
+  grid-row: 4 / 6;
+}
+.bubbles-3x4-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 6px;
+  flex: 1;
+}
+.num-bubble {
+  border: 1.5px solid #cbd5e1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.num-bubble.selected {
+  background-color: var(--accent-light);
+  border-color: var(--accent);
+}
+
+/* Section 5: Fruits (2x1 box, cols 2..3, row 4) */
+.sec-5-fruits {
+  grid-column: 2 / 4;
+  grid-row: 4 / 5;
+}
+.fruits-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex: 1;
+}
+.fruit-item {
+  font-size: 24px;
+  opacity: 0.3;
+  filter: grayscale(100%);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.fruit-item.colored {
+  opacity: 1;
+  filter: grayscale(0%);
+  transform: scale(1.15);
+}
+
+/* Section 6: Dice (1x1 box, col 2, row 5) */
+.sec-6-dice {
+  grid-column: 2 / 3;
+  grid-row: 5 / 6;
+}
+.dot-cards-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex: 1;
+}
+.dot-card-box {
+  border: 1.5px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 4px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.dot-card-box.selected {
+  border-color: var(--accent);
+  background-color: var(--accent-light);
+}
+.dots-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  gap: 3px;
+}
+.card-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #334155;
+  border-radius: 50%;
+}
+
+/* Section 7: Word Match (1x1 box, col 3, row 5) */
+.sec-7-wordmatch {
+  grid-column: 3 / 4;
+  grid-row: 5 / 6;
+}
+.word-2x2-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 4px;
+  flex: 1;
+}
+.word-choice-box {
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.word-choice-box.selected {
+  border-color: var(--accent);
+  background-color: var(--accent-light);
+}
+
+/* Section 8: Bottom Line (3x1 box, cols 1..3, row 6) */
+.sec-8-bottomline {
+  grid-column: 1 / 4;
+  grid-row: 6 / 7;
+}
+.bottom-12-line {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 4px;
+  flex: 1;
+}
+.line-match-box {
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.line-match-box.selected {
+  border-color: var(--accent);
+  background-color: var(--accent-light);
+}
+
+/* Correct Pick Checks */
+.worksheet-paper.checked .num-bubble.correct-pick,
+.worksheet-paper.checked .dot-card-box.correct-pick,
+.worksheet-paper.checked .word-choice-box.correct-pick,
+.worksheet-paper.checked .line-match-box.correct-pick {
+  background-color: var(--success-light) !important;
+  border-color: var(--success) !important;
+  color: var(--success) !important;
+}
+
 /* --- Print Stylesheet Override --- */
 @media print {
   /* Remove app interface components entirely */
@@ -716,10 +966,16 @@
 
   .blank-item-card,
   .count-item-card,
-  .pattern-challenge-card {
-    border: none !important;
+  .pattern-challenge-card,
+  .num-sec {
+    border: 1px solid #000 !important;
     background-color: transparent !important;
     box-shadow: none !important;
+  }
+
+  .fruit-item {
+    filter: grayscale(100%) !important;
+    opacity: 0.5 !important;
   }
 
   .pattern-sequence-bar {

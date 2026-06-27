@@ -99,3 +99,7 @@ Features a spelling card grid using emojis. Hides random letters (easy, medium, 
 ### 6. Emoji Pattern Path (Patterns)
 Displays a target sequence line of emojis with directional arrows (`➔`). Below, an exact-match grid contains the same emojis scattered randomly. Children trace/connect the grid emojis in the sequence order.
 
+### 7. Number Practice (1-10) (Math)
+Comprehensive single-page educational sheet for numbers 1 to 10 mapped into a 3x6 grid. Features giant tracing digits, 6x2 numeral tracing grids, word tracing, distractor bubble hunting, fruit coloring, dot group matching, word matching, and bottom-line matching.
+
+
