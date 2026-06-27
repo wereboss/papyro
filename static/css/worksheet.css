@@ -771,7 +771,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 26px;
+  font-size: 47px;
   font-weight: 700;
   color: #cbd5e1;
 }
@@ -794,7 +794,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 34px;
   font-weight: 700;
   color: #94a3b8;
   letter-spacing: 0.5px;
@@ -840,7 +840,7 @@
   flex: 1;
 }
 .fruit-item {
-  font-size: 15px;
+  font-size: 30px;
   opacity: 0.3;
   filter: grayscale(100%);
   cursor: pointer;
@@ -938,7 +938,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 15px;
+  font-size: 30px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s;
@@ -1082,7 +1082,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  font-size: 28px;
   cursor: pointer;
   transition: all 0.2s;
 }
