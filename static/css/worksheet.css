@@ -692,18 +692,28 @@
   grid-row: 1 / 4;
   align-items: center;
   justify-content: center;
+  padding: 2px;
+  overflow: hidden;
+}
+.sec-1-giant .sec-label {
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  z-index: 2;
+  margin-bottom: 0;
 }
 .giant-numeral {
-  font-size: 165px;
+  font-size: 220px;
   font-weight: 700;
   color: transparent;
-  -webkit-text-stroke: 3px #94a3b8;
-  line-height: 0.85;
+  -webkit-text-stroke: 3.5px #94a3b8;
+  line-height: 0.8;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
+  flex: 1;
 }
 
 /* Section 2: 6x2 Tracing (2x2 box, cols 2..3, rows 1..2) */
