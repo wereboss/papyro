@@ -925,6 +925,112 @@
   color: var(--success) !important;
 }
 
+/* --- 8. Add the Objects Grid Styling --- */
+.add-workspace-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.add-item-card {
+  background-color: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  user-select: none;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.add-card-header {
+  font-size: 13px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+.add-equation-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex: 1;
+}
+
+.add-group-box {
+  background-color: #f8fafc;
+  border: 1.5px dashed #cbd5e1;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex: 1;
+  min-height: 70px;
+}
+
+.add-emoji-item {
+  font-size: 26px;
+  line-height: 1;
+}
+
+.add-operator {
+  font-size: 24px;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.add-answer-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.add-blank-box {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #334155;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.add-ans-input {
+  width: 54px;
+  height: 50px;
+  border: 2px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--text-color);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.add-ans-input:focus {
+  border-color: var(--accent);
+}
+
+.add-ans-input.correct {
+  border-color: var(--success) !important;
+  background-color: var(--success-light) !important;
+}
+
+.add-ans-input.wrong {
+  border-color: var(--error) !important;
+  background-color: var(--error-light) !important;
+}
+
 /* --- Print Stylesheet Override --- */
 @media print {
   /* Remove app interface components entirely */
@@ -1015,7 +1121,8 @@
   .blank-item-card,
   .count-item-card,
   .pattern-challenge-card,
-  .num-sec {
+  .num-sec,
+  .add-item-card {
     border: 1px solid #000 !important;
     background-color: transparent !important;
     box-shadow: none !important;

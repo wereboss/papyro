@@ -102,4 +102,8 @@ Displays a target sequence line of emojis with directional arrows (`➔`). Below
 ### 7. Number Practice (1-10) (Math)
 Comprehensive single-page educational sheet for numbers 1 to 10 mapped into a 3x6 grid. Features giant tracing digits, 6x2 numeral tracing grids, word tracing, distractor bubble hunting, fruit coloring, dot group matching, word matching, and bottom-line matching.
 
+### 8. Add the Objects (Math)
+Generates 2-column grids of addition equation puzzle cards. Each card displays two groups of randomized emojis separated by a plus sign (`+`) and equals sign (`=`), expecting children to add the groups and write the numeric answer.
+
+
 

@@ -85,6 +85,16 @@ DEFAULT_TEMPLATES = [
             "target_number_2": 8,
             "orientation": "portrait"
         }
+    },
+    {
+        "id": "add_objects",
+        "name": "Add the Objects",
+        "description": "Count and add two groups of fun emojis to find the total sum and write the answer in numeric form.",
+        "base_config": {
+            "challenges_count": 4,
+            "max_count": 10,
+            "orientation": "portrait"
+        }
     }
 ]
 
