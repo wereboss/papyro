@@ -182,9 +182,10 @@ export class EmojiPatternTemplate extends BaseTemplate {
           return item;
         }).join("");
 
-        const row2Html = row2.map((emoji, i) => {
+        const row2Reversed = [...row2].reverse();
+        const row2Html = row2Reversed.map((emoji, i) => {
           let item = `<span class="pattern-seq-emoji">${emoji}</span>`;
-          if (i < row2.length - 1) item += `<span class="pattern-arrow">➔</span>`;
+          if (i < row2Reversed.length - 1) item += `<span class="pattern-arrow">⬅</span>`;
           return item;
         }).join("");
 
