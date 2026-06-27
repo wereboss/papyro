@@ -665,11 +665,16 @@
   justify-content: center;
 }
 .giant-numeral {
-  font-size: 130px;
+  font-size: 190px;
   font-weight: 700;
   color: transparent;
-  -webkit-text-stroke: 2px #94a3b8;
-  line-height: 1;
+  -webkit-text-stroke: 3px #94a3b8;
+  line-height: 0.9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
 /* Section 2: 6x2 Tracing (2x2 box, cols 2..3, rows 1..2) */
@@ -685,12 +690,12 @@
   flex: 1;
 }
 .trace-num-box {
-  border: 1px dashed #cbd5e1;
+  border: 1.5px dashed #cbd5e1;
   border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 42px;
   font-weight: 700;
   color: #cbd5e1;
 }
@@ -708,15 +713,15 @@
 }
 .word-trace-boxes .word-box {
   background-color: #f8fafc;
-  border: 1px dashed #cbd5e1;
+  border: 1.5px dashed #cbd5e1;
   border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 28px;
   font-weight: 700;
   color: #94a3b8;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
 
 /* Section 4: Bubbles (1x2 box, col 1, rows 4..5) */
