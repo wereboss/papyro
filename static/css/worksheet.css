@@ -587,8 +587,8 @@
 }
 
 .pattern-grid-node {
-  width: 46px;
-  height: 46px;
+  width: 52px;
+  height: 52px;
   background-color: #ffffff;
   border: 2px solid #cbd5e1;
   border-radius: 50%;
@@ -601,7 +601,7 @@
 }
 
 .pattern-grid-node .node-emoji {
-  font-size: 24px;
+  font-size: 30px;
   pointer-events: none;
 }
 

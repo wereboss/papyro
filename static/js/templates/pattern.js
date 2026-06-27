@@ -111,7 +111,7 @@ export class EmojiPatternTemplate extends BaseTemplate {
 
         <div class="form-group">
           <label>Challenges Count: <span id="val-pattern-count" class="option-slider-val">${config.challenges_count}</span></label>
-          <input type="range" id="pattern-opt-count" min="1" max="4" value="${config.challenges_count}" class="form-input">
+          <input type="range" id="pattern-opt-count" min="1" max="8" value="${config.challenges_count}" class="form-input">
         </div>
 
         <div class="form-group">
