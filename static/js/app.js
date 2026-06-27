@@ -6,6 +6,7 @@ import { WordSearchTemplate } from "./templates/search.js";
 import { ConnectDotsTemplate } from "./templates/maze.js";
 import { FillBlanksTemplate } from "./templates/blanks.js";
 import { CountObjectsTemplate } from "./templates/count.js";
+import { EmojiPatternTemplate } from "./templates/pattern.js";
 
 // Initialize Template Registry
 const TEMPLATE_REGISTRY = {
@@ -13,7 +14,8 @@ const TEMPLATE_REGISTRY = {
   word_search: new WordSearchTemplate(),
   connect_dots: new ConnectDotsTemplate(),
   fill_blanks: new FillBlanksTemplate(),
-  count_objects: new CountObjectsTemplate()
+  count_objects: new CountObjectsTemplate(),
+  emoji_pattern: new EmojiPatternTemplate()
 };
 
 // Global App State
@@ -92,8 +94,9 @@ function filterTemplatesBySubject(subject) {
     const isMath = subject === "math" && (t.id === "math_grid" || t.id === "count_objects");
     const isLogic = subject === "logic" && (t.id === "word_search" || t.id === "connect_dots");
     const isLanguage = subject === "language" && t.id === "fill_blanks";
+    const isPatterns = subject === "patterns" && t.id === "emoji_pattern";
     
-    if (isMath || isLogic || isLanguage) {
+    if (isMath || isLogic || isLanguage || isPatterns) {
       const card = document.createElement("div");
       card.className = `template-card ${activeTemplate && activeTemplate.id === t.id ? "active" : ""}`;
       card.dataset.id = t.id;
@@ -356,6 +359,7 @@ function loadSavedWorksheetInstance(ws) {
   let subject = "logic";
   if (ws.template_id === "math_grid" || ws.template_id === "count_objects") subject = "math";
   else if (ws.template_id === "fill_blanks") subject = "language";
+  else if (ws.template_id === "emoji_pattern") subject = "patterns";
   
   selectSubject.value = subject;
   filterTemplatesBySubject(selectSubject.value);

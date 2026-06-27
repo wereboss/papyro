@@ -95,3 +95,7 @@ Places dot nodes forming outlines of shapes (Heart, Star, Fish, Crown, House) on
 
 ### 5. Fill in the Blanks (Language)
 Features a spelling card grid using emojis. Hides random letters (easy, medium, or hard difficulties) and enables auto-focus progression as letters are typed to teach spelling.
+
+### 6. Emoji Pattern Path (Patterns)
+Displays a target sequence line of emojis with directional arrows (`➔`). Below, an exact-match grid contains the same emojis scattered randomly. Children trace/connect the grid emojis in the sequence order.
+

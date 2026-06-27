@@ -490,6 +490,125 @@
   right: -55px;
 }
 
+/* --- 6. Emoji Pattern Path Grid Styling --- */
+.pattern-workspace-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.pattern-challenge-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 16px;
+  position: relative;
+  user-select: none;
+}
+
+.pattern-challenge-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.pattern-sequence-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin-bottom: 16px;
+}
+
+.pattern-seq-emoji {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.pattern-arrow {
+  font-size: 18px;
+  color: #94a3b8;
+  font-weight: bold;
+}
+
+.pattern-grid-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.pattern-svg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.pattern-nodes-grid {
+  display: grid;
+  gap: 24px;
+  justify-content: center;
+  align-content: center;
+  z-index: 1;
+}
+
+.pattern-grid-node {
+  width: 64px;
+  height: 64px;
+  background-color: #ffffff;
+  border: 2px solid #cbd5e1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s, background-color 0.2s;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.pattern-grid-node .node-emoji {
+  font-size: 30px;
+  pointer-events: none;
+}
+
+.pattern-grid-node:hover {
+  transform: scale(1.1);
+  border-color: var(--accent);
+}
+
+.pattern-grid-node.connected {
+  border-color: var(--success);
+  background-color: var(--success-light);
+}
+
+.pattern-grid-node.wrong-pulse {
+  border-color: var(--error);
+  background-color: var(--error-light);
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
 /* --- Print Stylesheet Override --- */
 @media print {
   /* Remove app interface components entirely */
@@ -568,10 +687,16 @@
   }
 
   .blank-item-card,
-  .count-item-card {
+  .count-item-card,
+  .pattern-challenge-card {
     border: none !important;
     background-color: transparent !important;
     box-shadow: none !important;
+  }
+
+  .pattern-sequence-bar {
+    border: 1px solid #000 !important;
+    background-color: transparent !important;
   }
 
   .correct-count-hint {

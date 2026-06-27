@@ -64,6 +64,17 @@ DEFAULT_TEMPLATES = [
             "max_count": 10,
             "orientation": "portrait"
         }
+    },
+    {
+        "id": "emoji_pattern",
+        "name": "Emoji Pattern Path",
+        "description": "Trace and connect scattered grid emojis to match the target pattern sequence shown above.",
+        "base_config": {
+            "challenges_count": 3,
+            "grid_columns": 2,
+            "grid_rows": 2,
+            "orientation": "portrait"
+        }
     }
 ]
 
