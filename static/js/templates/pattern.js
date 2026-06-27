@@ -166,14 +166,40 @@ export class EmojiPatternTemplate extends BaseTemplate {
 
     let challengesHtml = "";
     state.challenges.forEach((ch, cIdx) => {
-      // 1. Render Top Sequence Line with arrows
+      // 1. Render Top Sequence Line with arrows (wrapped in rows if long)
       let seqLineHtml = "";
-      ch.sequence.forEach((emoji, sIdx) => {
-        seqLineHtml += `<span class="pattern-seq-emoji">${emoji}</span>`;
-        if (sIdx < ch.sequence.length - 1) {
-          seqLineHtml += `<span class="pattern-arrow">➔</span>`;
-        }
-      });
+      const len = ch.sequence.length;
+
+      if (len > 6) {
+        const mid = Math.ceil(len / 2);
+        const row1 = ch.sequence.slice(0, mid);
+        const row2 = ch.sequence.slice(mid);
+
+        const row1Html = row1.map((emoji, i) => {
+          let item = `<span class="pattern-seq-emoji">${emoji}</span>`;
+          if (i < row1.length - 1) item += `<span class="pattern-arrow">➔</span>`;
+          else item += `<span class="pattern-arrow arrow-wrap">↴</span>`;
+          return item;
+        }).join("");
+
+        const row2Html = row2.map((emoji, i) => {
+          let item = `<span class="pattern-seq-emoji">${emoji}</span>`;
+          if (i < row2.length - 1) item += `<span class="pattern-arrow">➔</span>`;
+          return item;
+        }).join("");
+
+        seqLineHtml = `
+          <div class="pattern-seq-row">${row1Html}</div>
+          <div class="pattern-seq-row">${row2Html}</div>
+        `;
+      } else {
+        const itemsHtml = ch.sequence.map((emoji, i) => {
+          let item = `<span class="pattern-seq-emoji">${emoji}</span>`;
+          if (i < ch.sequence.length - 1) item += `<span class="pattern-arrow">➔</span>`;
+          return item;
+        }).join("");
+        seqLineHtml = `<div class="pattern-seq-row">${itemsHtml}</div>`;
+      }
 
       // 2. Render Scattered Grid Items
       let gridNodesHtml = "";
